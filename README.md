@@ -14,6 +14,6 @@ Determinan, Transpose, and Inverse
 
 
 Made by:
-Alifais Farrel Ramdhani
-Melvin Waluyo
+Alifais Farrel Ramdhani,
+Melvin Waluyo,
 Nawa Bintang Jagad Raya
