@@ -1,0 +1,377 @@
+body{
+    background-image: url("img/background.jpg");
+    background-size: 100vw;
+}
+
+.backgroundCanvas{
+    width: auto;
+    height: 100vh;
+}
+
+.title{
+    width: auto;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.title h1{
+    color:white;
+    text-align: center;
+    font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
+    font-size: 8vh;
+}
+
+.matrixLabel{
+    width: auto;
+    height: 10vh;
+}
+
+.matrixLabelA{
+    width: 10vh;
+    height: 10vh;
+    float: left;
+    margin-left: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.matrixLabelA h2{
+    color:white;
+    text-align: center;
+    font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
+    font-size: 6vh;
+}
+
+.matrixLabelB{
+    width: 10vh;
+    height: 10vh;
+    float: left;
+    margin-left: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixLabelB h2{
+    color:white;
+    text-align: center;
+    font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
+    font-size: 6vh;
+}
+
+.matrixValue{
+    width: auto;
+    height: 30vh;
+}
+
+.matrixValueA{
+    background: red;
+    width: 30vh;
+    height: 30vh;
+    float: left;
+
+    margin-left: 10vh;
+}
+
+.matrixValueB{
+    background: blue;
+    width: 30vh;
+    height: 30vh;
+    float: left;
+    margin-left: 10vh;
+}
+
+.matrixValueCalculation{
+    width: 20vh;
+    height: 30vh;
+    float: left;
+    margin-left: 10vh;
+}
+
+.matrixValueCalculationAplusB{
+    width: 20vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixValueCalculationAminB{
+    width: 20vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixValueCalculationAtimesB{
+    width: 20vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixValueCalculationAplusB button{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.matrixValueCalculationAminB button{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.matrixValueCalculationAtimesB button{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.matrixValueEqual{
+    width: 10vh;
+    height: 30vh;
+    float: left;
+    margin-left: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixValueEqual h2{
+    color:white;
+    text-align: center;
+    font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
+    font-size: 10vh;
+}
+
+.matrixValueR{
+    background: green;
+    width: 30vh;
+    height: 30vh;
+    float: left;
+    margin-left: 10vh;
+}
+
+.matrixClear{
+    width: auto;
+    height: 10vh;
+}
+
+.matrixClearA{
+
+    width: 10vh;
+    height: 10vh;
+    float: left;
+    margin-left: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixClearB{
+
+    width: 10vh;
+    height: 10vh;
+    float: left;
+    margin-left: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixClearR{
+
+    width: 10vh;
+    height: 10vh;
+    float: left;
+    margin-left: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.buttonClearA{
+    width: 10vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.buttonClearB{
+    width: 10vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.buttonClearC{
+    width: 10vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.matrixButton{
+    width: auto;
+    height: 30vh;
+}
+
+.matrixButtonA{
+    width: 20vh;
+    height: 30vh;
+    float: left;
+    margin-left: 15vh;
+}
+
+.matrixButtonADeterminan{
+    width: 20vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixButtonATranspose{
+    width: 20vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixButtonAInverse{
+    width: 20vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+
+
+.matrixButtonB{
+    background: blue;
+    width: 20vh;
+    height: 30vh;
+    float: left;
+    margin-left: 20vh;
+}
+
+.buttonDeterminantA{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.buttonDeterminantB{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.buttonTransposeA{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.buttonTransposeB{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+.buttonInverseA{
+    width: 20vh;
+    height: 6vh;
+    border-radius: 2vh;
+    background: gray;
+    color:white;
+    font-size: 3vh;
+}
+
+
+.matrixButtonEqual{
+    width: 10vh;
+    height: 30vh;
+    float: left;
+    margin-left: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+}
+
+.matrixButtonEqual h2{
+    color:white;
+    text-align: center;
+    font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
+    font-size: 10vh;
+}
+
+.matrixButtonResult{
+    width: 30vh;
+    height: 30vh;
+    float: left;
+    margin-left: 10vh;
+}
+
+.matrixButtonResultLabel{
+    background: lime;
+    width: 30vh;
+    height: 10vh;
+    float: top;
+}
+
+.matrixButtonResultValue{
+    background: green;
+    width: 30vh;
+    height: 20vh;
+    float: top;
+}
