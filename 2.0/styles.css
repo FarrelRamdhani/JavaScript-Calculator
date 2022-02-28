@@ -427,7 +427,9 @@ body{
 }
 
 .matrixButtonResultLabel{
-    background: lime;
+    background: gray;
+    border-color: lime;
+    border-style: solid;
     width: 30vh;
     height: 10vh;
     float: top;
@@ -445,14 +447,26 @@ body{
 }
 
 .matrixButtonResultValue{
-    background: green;
+    background: gray;
+    border-color: lime;
+    border-style: solid;
     width: 30vh;
     height: 20vh;
     float: top;
 }
 
-.matrixButtonInput{
-    width: 8vh;
+.matrixInput{
+    width: 7.6vh;
+    height: 9vh;
+    background-color: gray;
+    font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
+    font-size: 3vh;
+    text-align: center;
+    color: white;
+}
+
+.matrixOutput{
+    width: 9vh;
     height: 9vh;
     background-color: gray;
     font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
