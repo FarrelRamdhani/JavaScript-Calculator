@@ -125,15 +125,6 @@ body{
     text-align: center; 
 }
 
-.matrixValueCalculationAB button{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
 .matrixValueEqual{
     width: 10vh;
     height: 30vh;
@@ -250,25 +241,7 @@ body{
     margin-left: 15vh;
 }
 
-.matrixButtonADeterminan{
-    width: 20vh;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; 
-}
-
-.matrixButtonATranspose{
-    width: 20vh;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; 
-}
-
-.matrixButtonAInverse{
+.matrixButtonBox{
     width: 20vh;
     height: 10vh;
     display: flex;
@@ -284,79 +257,7 @@ body{
     margin-left: 20vh;
 }
 
-.matrixButtonBDeterminan{
-    width: 20vh;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; 
-}
-
-.matrixButtonBTranspose{
-    width: 20vh;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; 
-}
-
-.matrixButtonBInverse{
-    width: 20vh;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; 
-}
-
-.buttonDeterminantA{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
-.buttonDeterminantB{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
-.buttonTransposeA{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
-.buttonTransposeB{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
-.buttonInverseA{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
-.buttonInverseB{
+.buttonLong{
     width: 20vh;
     height: 6vh;
     border-radius: 2vh;
