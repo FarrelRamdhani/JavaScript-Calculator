@@ -1,6 +1,6 @@
 # Java Script Matrix Calculator
 
-![Markdown Logo](img\calculator.png)
+![Markdown Logo](https://raw.githubusercontent.com/FarrelRamdhani/JavaScript-Calculator/main/img/calculator.png)
 
 ## Visit our website here: [Kalkulator Matriks](https://farrelramdhani.github.io/JavaScript-Calculator/)
 
