@@ -85,16 +85,16 @@
                 </div>
 
                 <div class="matrixValueCalculation">
-                    <div class="matrixValueCalculationAplusB">
-                        <button type="button" class="buttonAplusB" onclick="AplusB()">A + B</button>
+                    <div class="matrixValueCalculationAB">
+                        <button type="button" onclick="AplusB()">A + B</button>
                     </div>
 
-                    <div class="matrixValueCalculationAminB">
-                        <button type="button" class="buttonAminB" onclick="AminB()">A - B</button>
+                    <div class="matrixValueCalculationAB">
+                        <button type="button" onclick="AminB()">A - B</button>
                     </div>
 
-                    <div class="matrixValueCalculationAtimesB">
-                        <button type="button" class="buttonAtimesB" onclick="AtimesB()">A x B</button>
+                    <div class="matrixValueCalculationAB">
+                        <button type="button" onclick="AtimesB()">A x B</button>
                     </div>
                 </div>
 
@@ -155,13 +155,7 @@
 
                     <div class="matrixButtonATranspose">
                         <button type="button" class="buttonTransposeA" onclick="transposeA()">Transpose</button>
-                    </div>
-
-                    <div class="matrixButtonAInverse">
-                        <button type="button" class="buttonInverseA" onclick="inverseA()">Inverse</button>
-                    </div>
-                    
-                    
+                    </div>                    
                 </div>
 
                 <div class="matrixButtonB">
@@ -171,10 +165,6 @@
 
                     <div class="matrixButtonBTranspose">
                         <button type="button" class="buttonTransposeB" onclick="transposeB()">Transpose</button>
-                    </div>
-
-                    <div class="matrixButtonBInverse">
-                        <button type="button" class="buttonInverseB" onclick="inverseB()">Inverse</button>
                     </div>
                 </div>
 
@@ -187,7 +177,7 @@
                         <h2 id="resultDesc"></h2>
                     </div>
                     <div class="matrixButtonResultValue">
-                    
+                        <h2 id="resultVal"></h2>
                     </div>
                 </div>
             </div>

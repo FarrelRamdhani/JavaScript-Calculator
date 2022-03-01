@@ -116,7 +116,7 @@ body{
     margin-left: 10vh;
 }
 
-.matrixValueCalculationAplusB{
+.matrixValueCalculationAB{
     width: 20vh;
     height: 10vh;
     display: flex;
@@ -125,43 +125,7 @@ body{
     text-align: center; 
 }
 
-.matrixValueCalculationAminB{
-    width: 20vh;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; 
-}
-
-.matrixValueCalculationAtimesB{
-    width: 20vh;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; 
-}
-
-.matrixValueCalculationAplusB button{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
-.matrixValueCalculationAminB button{
-    width: 20vh;
-    height: 6vh;
-    border-radius: 2vh;
-    background: gray;
-    color:white;
-    font-size: 3vh;
-}
-
-.matrixValueCalculationAtimesB button{
+.matrixValueCalculationAB button{
     width: 20vh;
     height: 6vh;
     border-radius: 2vh;
@@ -430,7 +394,7 @@ body{
     background: gray;
     border-color: lime;
     border-style: solid;
-    width: 30vh;
+    width: 28vh;
     height: 10vh;
     float: top;
     display: flex;
@@ -450,9 +414,16 @@ body{
     background: gray;
     border-color: lime;
     border-style: solid;
-    width: 30vh;
+    width: 28vh;
     height: 20vh;
     float: top;
+}
+
+.matrixButtonResultValue h2{
+    color:white;
+    text-align: center;
+    font-family: 'Nunito Sans',-apple-system,blinkmacsystemfont,'Segoe UI',roboto,helvetica,arial,sans-serif;
+    font-size: 4vh;
 }
 
 .matrixInput{
