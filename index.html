@@ -1,66 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Matrix Calculator</title>
-    <script src="./script.js"></script>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-    <section id="banner">
-    <p>Matrix Calculator<hr></p>
-    <div id="upper">
-        <div id="matrix1" class="parent">
-            <h1 class="title">Matrix A</h1>
-            <input type="number" class="m1r1" value="0"/>
-            <input type="number" class="m1r1" value="0"/>
-            <input type="number" class="m1r1" value="0"/>
-            <input type="number" class="m1r2" value="0"/>
-            <input type="number" class="m1r2" value="0"/>
-            <input type="number" class="m1r2" value="0"/>
-            <input type="number" class="m1r3" value="0"/>
-            <input type="number" class="m1r3" value="0"/>
-            <input type="number" class="m1r3" value="0"/>
-            <div class="functions">
-                <input type="button" class="function" value="Determinant(A)" onclick="mc.calDeterminantA()"/>
-                <input type="button" class="function" value="Transpose(A)" onclick="mc.transposeMatrixA()"/>
-                
-                
-            </div>
-        </div>
-        
-        <div id="matrix2" class="parent">
-             <h1 class="title">Matrix B</h1>
-             <input type="number" class="m2r1" value="0"/>
-             <input type="number" class="m2r1" value="0"/>
-             <input type="number" class="m2r1" value="0"/>
-             <input type="number" class="m2r2" value="0"/>
-             <input type="number" class="m2r2" value="0"/>
-             <input type="number" class="m2r2" value="0"/>
-             <input type="number" class="m2r3" value="0"/>
-             <input type="number" class="m2r3" value="0"/>
-             <input type="number" class="m2r3" value="0"/>
-             <div class="functions">
-                <input type="button" class="function" value="Determinant(B)" onclick="mc.calDeterminantB()"/>
-                <input type="button" class="function" value="Transpose(B)" onclick="mc.transposeMatrixB()"/>
-                
-                
-            </div>
-        </div>
-        <div id="operations">
-            <input class="operation" type="button" value="A + B" onclick="mc.addMatrix()"/>
-            <input class="operation" type="button" value="A - B" onclick="mc.subtractMatrix()"/>
-            <input class="operation" type="button" value="A &times B" onclick="mc.multiplyMatrix()"/>
-            <input type="button" class="operation" value="Clear" onclick="mc.clear()"/>
-        </div>
-    </div>
-    <br>
-    <div id="lower">
-        
-        <textarea wrap="soft" id="console" cols="20" rows="10" disabled>Result:</textarea>
-    </div>
+    <head>
+        <title>Kalkulator Matriks</title>
+        <script src="script.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="styles.css">
 
-</section>
-</body>             
-</html>                                    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <div class="backgroundCanvas">
+            <div class="title">
+                <h1>Kalkulator Matriks</h1>
+            </div>
+
+            <div class="matrixLabel">
+                <div class="matrixLabelA">
+                    <h2>A</h2>
+                </div>
+                <div class="matrixLabelB">
+                    <h2>B</h2>
+                </div>
+            </div>
+
+            <div class="matrixValue">
+                <div class="matrixValueA">
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A11">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A12">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A13">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A21">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A22">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A23">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A31">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A32">
+                    </div>
+                    <div class="matrixBoxA">
+                        <input type="number" class="matrixInput" id="A33">
+                    </div>
+                </div>
+
+                <div class="matrixValueB">
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B11">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B12">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B13">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B21">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B22">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B23">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B31">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B32">
+                    </div>
+                    <div class="matrixBoxB">
+                        <input type="number" class="matrixInput" id="B33">
+                    </div>
+                </div>
+
+                <div class="matrixValueCalculation">
+                    <div class="matrixValueCalculationAB">
+                        <button class="buttonLong" type="button" onclick="AplusB()">A + B</button>
+                    </div>
+
+                    <div class="matrixValueCalculationAB">
+                        <button class="buttonLong" type="button" onclick="AminB()">A - B</button>
+                    </div>
+
+                    <div class="matrixValueCalculationAB">
+                        <button class="buttonLong"type="button" onclick="AtimesB()">A x B</button>
+                    </div>
+                </div>
+
+                <div class="matrixValueEqual">
+                    <h2>=</h2>
+                </div>
+
+                <div class="matrixValueR">
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R11"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R12"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R13"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R21"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R22"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R23"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R31"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R32"></output>
+                    </div>
+                    <div class="matrixBoxR">
+                        <output class="matrixOutput" id="R33"></output>
+                    </div>
+                </div>
+            </div>
+
+            <div class="matrixClear">
+                <div class="matrixClearA">
+                    <button type="button" class="buttonClearA" onclick="clearMatrixA()">Clear</button>
+                </div>
+
+                <div class="matrixClearB">
+                    <button type="button" class="buttonClearB" onclick="clearMatrixB()">Clear</button>
+                </div>
+
+                <div class="matrixClearR">
+                    <button type="button" class="buttonClearC" onclick="clearOutputR()">Clear</button>
+                </div>
+            </div>
+            
+            <div class="matrixButton">
+                <div class="matrixButtonA">
+                    <div class="matrixButtonBox">
+                        <button type="button" class="buttonLong" onclick="determinantA()">Determinant</button>
+                    </div>
+
+                    <div class="matrixButtonBox">
+                        <button type="button" class="buttonLong" onclick="transposeA()">Transpose</button>
+                    </div>                    
+                </div>
+
+                <div class="matrixButtonB">
+                    <div class="matrixButtonBox">
+                        <button type="button" class="buttonLong" onclick="determinantB()">Determinant</button>
+                    </div>
+
+                    <div class="matrixButtonBox">
+                        <button type="button" class="buttonLong" onclick="transposeB()">Transpose</button>
+                    </div>
+                </div>
+
+                <div class="matrixButtonEqual">
+                    <h2>=</h2>
+                </div>
+
+                <div class="matrixButtonResult">
+                    <div class="matrixButtonResultLabel">
+                        <h2 id="resultDesc"></h2>
+                    </div>
+                    <div class="matrixButtonResultValue">
+                        <h2 id="resultVal"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

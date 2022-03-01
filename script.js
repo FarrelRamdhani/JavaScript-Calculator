@@ -1,285 +1,186 @@
-class MatrixCalculator {
-	constructor() {
-		this.matrixA = [];
-		this.matrixB = [];
-		for(var i=0; i<3; i++) {
-			this.matrixA[i] = [];
-			this.matrixB[i] = [];
-		}
-		
-		this.AxDimension = 3;
-		this.AyDimension = 3;
-		this.BxDimension = 3;
-		this.ByDimension = 3;
-	}
-	calculateDimensions() {
-		//Calculating matrix A's dimensions
-		this.AxDimension = 3;
-		this.AyDimension = 3;
-		
-		var count = 2;
-		//If there's a whole column of 0's, we'll decrease the dimension and look at the next one.
-		while (count>=0 && this.matrixA[0][count]==0 && this.matrixA[1][count]==0 && this.matrixA[2][count]==0) {
-			this.AxDimension--;
-			count--;
-		}
-		count = 2;
-		//If there's a whole row of 0's, we'll decrease the dimension and look at the next one.
-		while (count>=0 && this.matrixA[count][0]==0 && this.matrixA[count][1]==0 && this.matrixA[count][2]==0) {
-			this.AyDimension--;
-			count--;
-		}
-		
-		//Calculating matrix B's dimensions in the same way
-		this.BxDimension = 3;
-		this.ByDimension = 3;
-		
-		var count = 2;
-		//If there's a whole column of 0's, we'll decrease the dimension and look at the next one.
-		while (count>=0 && this.matrixB[0][count]==0 && this.matrixB[1][count]==0 && this.matrixB[2][count]==0) {
-			this.BxDimension--;
-			count--;
-		}
-		count = 2;
-		//If there's a whole row of 0's, we'll decrease the dimension and look at the next one.
-		while (count>=0 && this.matrixB[count][0]==0 && this.matrixB[count][1]==0 && this.matrixB[count][2]==0) {
-			this.ByDimension--;
-			count--;
-		}		
-	}
+window.onload = startFunction;
 
-    rebuildMatrix() {
-		var row1 = document.getElementsByClassName("m1r1");
-		var row2 = document.getElementsByClassName("m1r2");
-		var row3 = document.getElementsByClassName("m1r3");
-		for (var i=0; i<3; i++) {
-			this.matrixA[0][i] = row1[i].value;
-			this.matrixA[1][i] = row2[i].value;
-			this.matrixA[2][i] = row3[i].value;
-		}
-		row1 = document.getElementsByClassName("m2r1");
-		row2 = document.getElementsByClassName("m2r2");
-		row3 = document.getElementsByClassName("m2r3");
-		for (var i=0; i<3; i++) {
-			this.matrixB[0][i] = row1[i].value;
-			this.matrixB[1][i] = row2[i].value;
-			this.matrixB[2][i] = row3[i].value;
-		}
-		this.calculateDimensions();
-	}
-	
-    calDeterminantA() {
-		this.rebuildMatrix();
-		if (this.AxDimension!=this.AyDimension) {
-			this.determinantA=null;
-			this.printOnConsole("Non-square matrix, determinant cannot be calculated.");
-			return;
-		}
-		var determinant;
-		if (this.AxDimension==1) {
-			determinant = this.matrixA[0][0];
-		}
-		if (this.AxDimension==2) {
-			determinant = (this.matrixA[0][0]*this.matrixA[1][1])-(this.matrixA[0][1]*this.matrixA[1][0]);
-		}
-		if (this.AxDimension==3) {
-			// Calculate determinatant of a 3*3 matrix 
-			//      |a b c|
-			// |A|= |d e f|  = ( a*e*i + b*f*g + c*d*h - a*f*h -b*f*g - c*e*g)
-			//      |g h i|
-
-			var op1, op2, op3, r1, r2, r3;
-			op1 = this.matrixA[0][0]*this.matrixA[1][1]*this.matrixA[2][2];
-			op2 = this.matrixA[0][1]*this.matrixA[1][2]*this.matrixA[2][0];
-			op3 = this.matrixA[0][2]*this.matrixA[1][0]*this.matrixA[2][1];
-			r1 = this.matrixA[0][2]*this.matrixA[1][1]*this.matrixA[2][0];
-			r2 = this.matrixA[0][0]*this.matrixA[1][2]*this.matrixA[2][1];
-			r3 = this.matrixA[0][1]*this.matrixA[1][0]*this.matrixA[2][2];
-			determinant = Math.round((op1+op2+op3-r1-r2-r3)*100)/100;
-		}
-		this.determinantA = determinant;
-		//adding determinant of A in local storage
-		let det;
-		if(localStorage.getItem('Determinant(A)')===null){
-			det=[];
-		}else{
-			det=JSON.parse(localStorage.getItem('Determinant(A)'));
-		}
-		det.push(determinant);
-		localStorage.setItem('Determinant(A)',JSON.stringify(det));
-
-		this.printOnConsole("Determinant of matrix A: "+determinant)
-		return;
-	}
-
-    transposeMatrixA() {
-		this.rebuildMatrix();
-		var string = "Transposition result of matrix A:\r";
-		for (var i =0; i<this.AxDimension; i++) {
-			for (var j=0; j<this.AyDimension; j++) {
-				string=string+"\t"+this.matrixA[j][i];
-			}
-			string=string+"\r";
-		}
-		this.printOnConsole(string);
-	}
-	
-
-
-	clear(){
-       this.printOnConsole(document.getElementById('console').value = 'Result:');
-
-	}
-    addMatrix() {
-		this.rebuildMatrix();
-		if (this.AxDimension!=this.AyDimension) {
-			this.printOnConsole("Matrices have different dimmensions.");
-			return;
-		}
-		var result = [];
-		for(var i=0; i<3; i++) 
-			result[i]=[];
-		for (i =0; i<this.AyDimension; i++) {
-			for (var j=0; j<this.AxDimension; j++) {
-				//Parsing is necessary here since addition operator can also concatenate strings
-				result[i][j]=Math.round((parseFloat(this.matrixA[i][j])+parseFloat(this.matrixB[i][j]))*100)/100;
-			}
-		}
-		var string = "Addition result:\r";
-		for (i =0; i<this.AyDimension; i++) {
-			for (var j=0; j<this.AxDimension; j++) {
-				string=string+"\t"+result[i][j];
-			}
-			string=string+"\r";
-		}
-		this.printOnConsole(string);
-	}
-    
-	subtractMatrix() {
-		this.rebuildMatrix();
-		if (this.AxDimension!=this.AyDimension) {
-			this.printOnConsole("Matrices have different dimmensions.");
-			return;
-		}
-		var result = [];
-		for(var i=0; i<3; i++) 
-			result[i]=[];
-		for (i =0; i<this.AyDimension; i++) {
-			for (var j=0; j<this.AxDimension; j++) {
-				result[i][j]=Math.round((parseFloat(this.matrixA[i][j])-parseFloat(this.matrixB[i][j]))*100)/100;
-			}
-		}
-		var string = "Subtraction result:\r";
-		for (i =0; i<this.AyDimension; i++) {
-			for (var j=0; j<this.AxDimension; j++) {
-				string=string+"\t"+result[i][j];
-			}
-			string=string+"\r";
-		}
-		this.printOnConsole(string);
-	}
-	
-	multiplyMatrix() {
-		this.rebuildMatrix();
-		if (this.AxDimension!=this.ByDimension) {
-			this.printOnConsole("Number of columns on A is different from number of rows on B.");
-			return;
-		}
-		var result = [];
-		for(var i=0; i<3; i++) 
-			result[i]=[];
-		i=0;
-		var j=0;
-		//x refers to columns, y refers to rows
-		var rowsRes = this.AyDimension;
-		var columnsRes = this.BxDimension;
-		
-		for (i=0; i<rowsRes; i++) {
-			for (j=0; j<columnsRes; j++) {
-				result[i][j] = this.matrixA[i][0]*this.matrixB[0][j]+this.matrixA[i][1]*this.matrixB[1][j]+this.matrixA[i][2]*this.matrixB[2][j];
-				result[i][j] = Math.round(result[i][j]*100)/100;
-			}
-		}
-		var string = "Multiplication result:\r";
-		for (i=0; i<rowsRes; i++) {
-			for (j=0; j<columnsRes; j++) {
-				string=string+"\t"+result[i][j];
-			}
-			string=string+"\r";
-		}
-	// 	let old=[
-	// 		[result[0][0] ,result[0][1],result[0][2]],
-	// 	    [result[1][0] ,result[1][1],result[1][2]],
-	// 		[result[2][0] ,result[2][1],result[2][2]]  
-	
-	// ]
-	// 	let str;
-	// 	if(localStorage.getItem('multiplied_matrix')===null){
-	// 		str=[];
-	// 	}else{
-	// 		str=JSON.parse(localStorage.getItem('multiplied_matrix'));
-	// 	}
-	// 	str.push(old);
-	// 	localStorage.setItem('multiplied_matrix',JSON.stringify(str));
-		this.printOnConsole(string);
-	}
-	calDeterminantB() {
-		this.rebuildMatrix();
-		if (this.BxDimension!=this.ByDimension) {
-			this.determinantB=null;
-			this.printOnConsole("Non-square matrix, determinant cannot be calculated.");
-			return;
-		}
-		var determinant;
-		if (this.BxDimension==1) {
-			determinant = this.matrixB[0][0];
-		}
-		if (this.BxDimension==2) {
-			determinant = (this.matrixB[0][0]*this.matrixB[1][1])-(this.matrixB[0][1]*this.matrixB[1][0]);
-		}
-		if (this.BxDimension==3) {
-			var op1, op2, op3, r1, r2, r3;
-			op1 = this.matrixB[0][0]*this.matrixB[1][1]*this.matrixB[2][2];
-			op2 = this.matrixB[0][1]*this.matrixB[1][2]*this.matrixB[2][0];
-			op3 = this.matrixB[0][2]*this.matrixB[1][0]*this.matrixB[2][1];
-			r1 = this.matrixB[0][2]*this.matrixB[1][1]*this.matrixB[2][0];
-			r2 = this.matrixB[0][0]*this.matrixB[1][2]*this.matrixB[2][1];
-			r3 = this.matrixB[0][1]*this.matrixB[1][0]*this.matrixB[2][2];
-			determinant = Math.round((op1+op2+op3-r1-r2-r3)*100)/100;
-		}
-		this.determinantB = determinant;
-		let det;
-		if(localStorage.getItem('Determinant(B)')===null){
-			det=[];
-		}else{
-			det=JSON.parse(localStorage.getItem('Determinant(B)'));
-		}
-		det.push(determinant);
-		localStorage.setItem('Determinant(B)',JSON.stringify(det));
-		this.printOnConsole("Determinant of matrix B: "+determinant)
-		return;
-	}
-
-    transposeMatrixB() {
-		this.rebuildMatrix();
-		var string = "Transposition result of matrix B:\r";
-		for (var i =0; i<this.BxDimension; i++) {
-			for (var j=0; j<this.ByDimension; j++) {
-				string=string+"\t"+this.matrixB[j][i];
-			}
-			string=string+"\r";
-		}
-		this.printOnConsole(string);
-	}
-	
-
-    
-	printOnConsole(val) {
-		document.getElementById("console").value = val;
-	}
-	
-	
-	
+function startFunction(){
+    clearMatrixA();
+    clearMatrixB();
+    clearOutputR();
 }
 
-var mc = new MatrixCalculator();
+function clearMatrixA(){
+    document.getElementById("A11").value = 0;
+    document.getElementById("A12").value = 0;
+    document.getElementById("A13").value = 0;
+    document.getElementById("A21").value = 0;
+    document.getElementById("A22").value = 0;
+    document.getElementById("A23").value = 0;
+    document.getElementById("A31").value = 0;
+    document.getElementById("A32").value = 0;
+    document.getElementById("A33").value = 0;
+}
+
+function clearMatrixB(){
+    document.getElementById("B11").value = 0;
+    document.getElementById("B12").value = 0;
+    document.getElementById("B13").value = 0;
+    document.getElementById("B21").value = 0;
+    document.getElementById("B22").value = 0;
+    document.getElementById("B23").value = 0;
+    document.getElementById("B31").value = 0;
+    document.getElementById("B32").value = 0;
+    document.getElementById("B33").value = 0;
+}
+
+function clearOutputR(){
+    document.getElementById("R11").value = 0;
+    document.getElementById("R12").value = 0;
+    document.getElementById("R13").value = 0;
+    document.getElementById("R21").value = 0;
+    document.getElementById("R22").value = 0;
+    document.getElementById("R23").value = 0;
+    document.getElementById("R31").value = 0;
+    document.getElementById("R32").value = 0;
+    document.getElementById("R33").value = 0;
+
+    document.getElementById("resultVal").innerHTML = "";
+
+    document.getElementById("resultDesc").innerHTML = "";
+}
+
+function AplusB(){
+    clearOutputR();
+
+    document.getElementById("R11").value = parseFloat(document.getElementById("A11").value) + parseFloat(document.getElementById("B11").value);
+    document.getElementById("R12").value = parseFloat(document.getElementById("A12").value) + parseFloat(document.getElementById("B12").value);
+    document.getElementById("R13").value = parseFloat(document.getElementById("A13").value) + parseFloat(document.getElementById("B13").value);
+    document.getElementById("R21").value = parseFloat(document.getElementById("A21").value) + parseFloat(document.getElementById("B21").value);
+    document.getElementById("R22").value = parseFloat(document.getElementById("A22").value) + parseFloat(document.getElementById("B22").value);
+    document.getElementById("R23").value = parseFloat(document.getElementById("A23").value) + parseFloat(document.getElementById("B23").value);
+    document.getElementById("R31").value = parseFloat(document.getElementById("A31").value) + parseFloat(document.getElementById("B31").value);
+    document.getElementById("R32").value = parseFloat(document.getElementById("A32").value) + parseFloat(document.getElementById("B32").value);
+    document.getElementById("R33").value = parseFloat(document.getElementById("A33").value) + parseFloat(document.getElementById("B33").value);
+
+    document.getElementById("resultDesc").innerHTML="A + B";
+}
+
+function AminB() {
+    clearOutputR();
+
+    document.getElementById("R11").value = parseFloat(document.getElementById("A11").value) - parseFloat(document.getElementById("B11").value);
+    document.getElementById("R12").value = parseFloat(document.getElementById("A12").value) - parseFloat(document.getElementById("B12").value);
+    document.getElementById("R13").value = parseFloat(document.getElementById("A13").value) - parseFloat(document.getElementById("B13").value);
+    document.getElementById("R21").value = parseFloat(document.getElementById("A21").value) - parseFloat(document.getElementById("B21").value);
+    document.getElementById("R22").value = parseFloat(document.getElementById("A22").value) - parseFloat(document.getElementById("B22").value);
+    document.getElementById("R23").value = parseFloat(document.getElementById("A23").value) - parseFloat(document.getElementById("B23").value);
+    document.getElementById("R31").value = parseFloat(document.getElementById("A31").value) - parseFloat(document.getElementById("B31").value);
+    document.getElementById("R32").value = parseFloat(document.getElementById("A32").value) - parseFloat(document.getElementById("B32").value);
+    document.getElementById("R33").value = parseFloat(document.getElementById("A33").value) - parseFloat(document.getElementById("B33").value);
+
+    document.getElementById("resultDesc").innerHTML = "A - B";
+}
+
+function AtimesB(){
+    clearOutputR();
+
+    var A11 = document.getElementById("A11").value;
+    var A12 = document.getElementById("A12").value;
+    var A13 = document.getElementById("A13").value;
+    var A21 = document.getElementById("A21").value;
+    var A22 = document.getElementById("A22").value;
+    var A23 = document.getElementById("A23").value;
+    var A31 = document.getElementById("A31").value;
+    var A32 = document.getElementById("A32").value;
+    var A33 = document.getElementById("A33").value;
+
+    var B11 = document.getElementById("B11").value;
+    var B12 = document.getElementById("B12").value;
+    var B13 = document.getElementById("B13").value;
+    var B21 = document.getElementById("B21").value;
+    var B22 = document.getElementById("B22").value;
+    var B23 = document.getElementById("B23").value;
+    var B31 = document.getElementById("B31").value;
+    var B32 = document.getElementById("B32").value;
+    var B33 = document.getElementById("B33").value;
+
+    document.getElementById("R11").value = (parseFloat(A11) * parseFloat(B11)) + (parseFloat(A12) * parseFloat(B21)) + (parseFloat(A13) * parseFloat(B31));
+    document.getElementById("R12").value = (parseFloat(A11) * parseFloat(B12)) + (parseFloat(A12) * parseFloat(B22)) + (parseFloat(A13) * parseFloat(B32));
+    document.getElementById("R13").value = (parseFloat(A11) * parseFloat(B13)) + (parseFloat(A12) * parseFloat(B23)) + (parseFloat(A13) * parseFloat(B33));
+    document.getElementById("R21").value = (parseFloat(A21) * parseFloat(B11)) + (parseFloat(A22) * parseFloat(B21)) + (parseFloat(A23) * parseFloat(B31));
+    document.getElementById("R22").value = (parseFloat(A21) * parseFloat(B12)) + (parseFloat(A22) * parseFloat(B22)) + (parseFloat(A23) * parseFloat(B32));
+    document.getElementById("R23").value = (parseFloat(A21) * parseFloat(B13)) + (parseFloat(A22) * parseFloat(B23)) + (parseFloat(A23) * parseFloat(B33));
+    document.getElementById("R31").value = (parseFloat(A31) * parseFloat(B11)) + (parseFloat(A32) * parseFloat(B21)) + (parseFloat(A33) * parseFloat(B31));
+    document.getElementById("R32").value = (parseFloat(A31) * parseFloat(B12)) + (parseFloat(A32) * parseFloat(B22)) + (parseFloat(A33) * parseFloat(B32));
+    document.getElementById("R33").value = (parseFloat(A31) * parseFloat(B13)) + (parseFloat(A32) * parseFloat(B23)) + (parseFloat(A33) * parseFloat(B33));
+
+    document.getElementById("resultDesc").innerHTML = "A x B";
+}
+
+function determinantA(){
+    clearOutputR();
+
+    var A11 = document.getElementById("A11").value;
+    var A12 = document.getElementById("A12").value;
+    var A13 = document.getElementById("A13").value;
+    var A21 = document.getElementById("A21").value;
+    var A22 = document.getElementById("A22").value;
+    var A23 = document.getElementById("A23").value;
+    var A31 = document.getElementById("A31").value;
+    var A32 = document.getElementById("A32").value;
+    var A33 = document.getElementById("A33").value;
+
+    var determinan = (parseFloat(A11) * parseFloat(A22) * parseFloat(A33)) + (parseFloat(A12) * parseFloat(A23) * parseFloat(A31)) + (parseFloat(A13) * parseFloat(A21) * parseFloat(A32)) - (parseFloat(A13) * parseFloat(A22) * parseFloat(A31)) - (parseFloat(A11) * parseFloat(A23) * parseFloat(A32)) - (parseFloat(A12) * parseFloat(A21) * parseFloat(A33))
+
+    document.getElementById("resultVal").innerHTML = determinan;
+    document.getElementById("resultDesc").innerHTML = "Determinan A"
+}
+
+function determinantB() {
+    clearOutputR();
+
+    var B11 = document.getElementById("B11").value;
+    var B12 = document.getElementById("B12").value;
+    var B13 = document.getElementById("B13").value;
+    var B21 = document.getElementById("B21").value;
+    var B22 = document.getElementById("B22").value;
+    var B23 = document.getElementById("B23").value;
+    var B31 = document.getElementById("B31").value;
+    var B32 = document.getElementById("B32").value;
+    var B33 = document.getElementById("B33").value;
+
+    var determinan = (parseFloat(B11) * parseFloat(B22) * parseFloat(B33)) + (parseFloat(B12) * parseFloat(B23) * parseFloat(B31)) + (parseFloat(B13) * parseFloat(B21) * parseFloat(B32)) - (parseFloat(B13) * parseFloat(B22) * parseFloat(B31)) - (parseFloat(B11) * parseFloat(B23) * parseFloat(B32)) - (parseFloat(B12) * parseFloat(B21) * parseFloat(B33))
+
+    document.getElementById("resultVal").innerHTML = determinan;
+    document.getElementById("resultDesc").innerHTML = "Determinan B"
+}
+
+function transposeA(){
+    clearOutputR()
+
+    document.getElementById("R11").value = document.getElementById("A11").value;
+    document.getElementById("R12").value = document.getElementById("A21").value;
+    document.getElementById("R13").value = document.getElementById("A31").value;
+    document.getElementById("R21").value = document.getElementById("A12").value;
+    document.getElementById("R22").value = document.getElementById("A22").value;
+    document.getElementById("R23").value = document.getElementById("A32").value;
+    document.getElementById("R31").value = document.getElementById("A13").value;
+    document.getElementById("R32").value = document.getElementById("A23").value;
+    document.getElementById("R33").value = document.getElementById("A33").value;
+
+    document.getElementById("resultDesc").innerHTML = "Transpose A";
+}
+
+
+function transposeB() {
+    clearOutputR();
+
+    document.getElementById("R11").value = document.getElementById("B11").value;
+    document.getElementById("R12").value = document.getElementById("B21").value;
+    document.getElementById("R13").value = document.getElementById("B31").value;
+    document.getElementById("R21").value = document.getElementById("B12").value;
+    document.getElementById("R22").value = document.getElementById("B22").value;
+    document.getElementById("R23").value = document.getElementById("B32").value;
+    document.getElementById("R31").value = document.getElementById("B13").value;
+    document.getElementById("R32").value = document.getElementById("B23").value;
+    document.getElementById("R33").value = document.getElementById("B33").value;
+
+    document.getElementById("resultDesc").innerHTML = "Transpose B";
+}
